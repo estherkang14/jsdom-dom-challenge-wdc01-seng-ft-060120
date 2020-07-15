@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(){
     const counterElement = document.getElementById("counter")
+    const minus = document.querySelector('#minus')
+    const plus = document.querySelector('#plus')
+    const heart = document.querySelector('#heart')
+
     let counterInterval = setInterval(counterAction, 1000)
+    let resumeCounter = 
 
     function counterAction() {
         counterElement.innerHTML = parseInt(counterElement.innerHTML, 10) + 1 
@@ -25,6 +30,15 @@ document.addEventListener("DOMContentLoaded", function(){
             e.target.innerHTML = "resume"
             let currentCount = counterElement.innerHTML
             console.log(currentCount)
+
+            if (e.target.innerHTML === "resume") {
+                minus.setAttribute("disabled", false);
+                plus.setAttribute("disabled", false);
+                heart.setAttribute("disabled", false);
+
+                
+                
+            }
         }
         
     })
