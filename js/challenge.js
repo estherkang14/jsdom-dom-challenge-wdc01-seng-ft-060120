@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function(){
     const minus = document.querySelector('#minus')
     const plus = document.querySelector('#plus')
     const heart = document.querySelector('#heart')
+    let numOfLikes = 0 
+
+    const form = document.querySelector("#comment-form")
+
     let counterInterval = setInterval(counterAction, 1000)
 
     function counterAction() {
@@ -17,13 +21,19 @@ document.addEventListener("DOMContentLoaded", function(){
         if (e.target.id === "plus") {
             counterElement.innerHTML = parseInt(counterElement.innerHTML, 10) + 1 
         }
-        // if (e.target.id === "heart") {
-        //     const likeList = document.querySelector(".likes")
-        //     const likeEl = document.createElement("li")
-            //    let currentCount = counterElement.innerHTML
-            //    let numOfLikes = 0 
-        //     likeEl.innerText = 
-        // }
+        if (e.target.id === "heart") {
+            const likeList = document.querySelector(".likes")
+            const likeEl = document.createElement("li")
+            let currentCount = counterElement.innerHTML
+            likeEl.setAttribute(`'data-num = ${currentCount}'`)
+
+            likeList.appendChild(likeEl)
+
+            console.log(likeList);
+            
+            // likeEl.innerText = `${currentCount} has been liked ${numOfLikes} time(s)`
+        }
+
         if (e.target.id === "pause" && e.target.innerText === "pause") {
             clearInterval(counterInterval)
             e.target.innerText = "resume"
@@ -34,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function(){
             
             
         } 
+
+        if (e.target.id === "remove")
+
         // if (e.target.id === "pause" && e.target.innerText === "resume") {
         //     e.target.innerText = "pause"
         //     let currentCount = counterElement.innerText
@@ -45,5 +58,16 @@ document.addEventListener("DOMContentLoaded", function(){
        
         
     })
-    
+  
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        const commentDiv = document.querySelector('div.comments');
+        const commentList = document.createElement('p');
+        const comment = document.querySelector('#comment-input')
+
+        commentList.innerHTML = `"${comment.value}" <button id="remove"> X </button>`
+        commentDiv.appendChild(commentList);
+    })
+
+
 })
